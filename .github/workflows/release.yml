@@ -1,0 +1,39 @@
+# This workflow will build a Java project with Gradle
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: Publish release on GitHub Packages
+
+on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Make gradlew executable
+        if: runner.os == 'Linux'
+        run: chmod +x ./gradlew
+
+      - name: Publish on Maven repository
+        uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+        with:
+          arguments: publishMavenJavaPublicationToMavenRepository
+        env:
+          ORG_GRADLE_PROJECT_githubUsername: ${{ secrets.GITHUB_ACTOR }}
+          ORG_GRADLE_PROJECT_githubToken: ${{ secrets.GITHUB_TOKEN }}

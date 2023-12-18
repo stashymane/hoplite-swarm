@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    id("maven-publish")
 }
 
 group = "dev.stashy"
@@ -15,6 +16,28 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
 kotlin {
     jvmToolchain(17)
 }
+
+val githubUser: String? by project
+val githubToken: String? by project
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
+
+    repositories {
+        maven("https://maven.pkg.github.com/stashymane/hoplite-swarm") {
+            credentials {
+                username = githubUser ?: ""
+                password = githubToken ?: ""
+            }
+        }
+    }
+}
+

@@ -3,8 +3,8 @@ plugins {
     id("maven-publish")
 }
 
-group = "dev.stashy"
-version = "1.0-SNAPSHOT"
+group = "dev.stashy.hoplite.swarm"
+version = "1.0.0"
 
 dependencies {
     implementation(libs.hoplite.core)

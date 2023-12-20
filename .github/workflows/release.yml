@@ -35,5 +35,7 @@ jobs:
         with:
           arguments: publishMavenJavaPublicationToMavenRepository
         env:
-          ORG_GRADLE_PROJECT_githubUsername: ${{ secrets.GITHUB_ACTOR }}
+          ORG_GRADLE_PROJECT_githubUser: ${{ secrets.GITHUB_ACTOR }}
           ORG_GRADLE_PROJECT_githubToken: ${{ secrets.GITHUB_TOKEN }}
+          ORG_GRADLE_PROJECT_repoUser: ${{ secrets.REPO_USER }}
+          ORG_GRADLE_PROJECT_repoToken: ${{ secrets.REPO_TOKEN }}

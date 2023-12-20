@@ -24,6 +24,9 @@ kotlin {
 val githubUser: String? by project
 val githubToken: String? by project
 
+val repoUser: String? by project
+val repoToken: String? by project
+
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
@@ -36,6 +39,12 @@ publishing {
             credentials {
                 username = githubUser ?: ""
                 password = githubToken ?: ""
+            }
+        }
+        maven("https://repo.stashy.dev") {
+            credentials {
+                username = repoUser ?: ""
+                password = repoToken ?: ""
             }
         }
     }

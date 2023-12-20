@@ -33,7 +33,7 @@ jobs:
       - name: Publish on Maven repository
         uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
         with:
-          arguments: publishMavenJavaPublicationToMavenRepository
+          arguments: publish
         env:
           ORG_GRADLE_PROJECT_githubUser: ${{ secrets.GITHUB_ACTOR }}
           ORG_GRADLE_PROJECT_githubToken: ${{ secrets.GITHUB_TOKEN }}

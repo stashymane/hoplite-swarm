@@ -41,7 +41,7 @@ publishing {
                 password = githubToken ?: ""
             }
         }
-        maven("https://repo.stashy.dev") {
+        maven("https://repo.stashy.dev/releases") {
             credentials {
                 username = repoUser ?: ""
                 password = repoToken ?: ""

@@ -2,13 +2,20 @@
 
 Allows fetching Docker Swarm secrets with Hoplite.
 
-Only packaged on GitHub packages, for now.
+Available either through my personal repo, or GitHub Packages.
 
+### GitHub packages
 ```kts
-repositories {
-    maven("https://maven.pkg.github.com/stashymane/hoplite-swarm")
-}
+maven("https://maven.pkg.github.com/stashymane/hoplite-swarm")
+```
 
+### My repository
+```kts
+maven("https://repo.stashy.dev/releases")
+```
+
+### Dependency
+```kts
 dependencies {
     implementation("dev.stashy.hoplite.swarm:hoplite-swarm:<version>")
 }

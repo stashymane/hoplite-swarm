@@ -1,17 +1,14 @@
-# Hoplite Docker Swarm preprocessor
+# Hoplite Docker Swarm preprocessor [![Package version](https://repo.stashy.dev/api/badge/latest/releases/dev/stashy/hoplite/swarm/hoplite-swarm/?name=hoplite-swarm)](https://repo.stashy.dev/#/releases/dev/stashy/hoplite/swarm/hoplite-swarm)
 
 Allows fetching Docker Swarm secrets with Hoplite.
 
 Available either through my personal repo, or GitHub Packages.
 
-### GitHub packages
+### Repository
 ```kts
-maven("https://maven.pkg.github.com/stashymane/hoplite-swarm")
-```
-
-### My repository
-```kts
-maven("https://repo.stashy.dev/releases")
+repositories {
+    maven("https://repo.stashy.dev/releases")
+}
 ```
 
 ### Dependency

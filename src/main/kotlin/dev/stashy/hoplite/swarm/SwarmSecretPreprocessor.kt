@@ -7,6 +7,11 @@ import com.sksamuel.hoplite.preprocessor.TraversingPrimitivePreprocessor
 import java.nio.file.Files
 import java.nio.file.Path
 
+/**
+ * Hoplite preprocessor for Docker Swarm secrets.
+ * @property secretPath The path to look for secret files in.
+ * @property trimValues Whether to trim leading and trailing whitespace & lines from the secret value.
+ */
 class SwarmSecretPreprocessor(
     private val secretPath: Path = Path.of("/run/secrets"),
     private val trimValues: Boolean = true

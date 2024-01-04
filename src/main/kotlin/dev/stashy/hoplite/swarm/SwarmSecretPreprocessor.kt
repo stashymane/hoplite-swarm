@@ -8,7 +8,8 @@ import java.nio.file.Files
 import java.nio.file.Path
 
 class SwarmSecretPreprocessor(
-    private val secretPath: Path = Path.of("/run/secrets")
+    private val secretPath: Path = Path.of("/run/secrets"),
+    private val trimValues: Boolean = true
 ) : TraversingPrimitivePreprocessor() {
     private val regex = Regex("swarm://(.+?)")
 
@@ -27,7 +28,8 @@ class SwarmSecretPreprocessor(
 
     private fun getSecret(name: String, node: StringNode): ConfigResult<Node> = runCatching {
         val content = Files.readString(secretPath.resolve(name))
-        node.copy(value = content)
+        val value = if (trimValues) content.trim() else content
+        node.copy(value = value)
             .withMeta(CommonMetadata.UnprocessedValue, node.value)
             .withMeta(CommonMetadata.Secret, true)
             .withMeta(CommonMetadata.RemoteLookup, "Swarm secret '$name'")
